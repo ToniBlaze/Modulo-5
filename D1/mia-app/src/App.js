@@ -11,7 +11,7 @@ function App() {
     testo: 'Testo a caso',
     autore: {
       name: 'Alessio',
-      avatarUrl: 'http://placekitten.com/g/64/64'
+      avatarUrl: "https://i.pravatar.cc/"
     }
   };
 
