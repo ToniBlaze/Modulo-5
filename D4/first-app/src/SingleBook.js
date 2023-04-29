@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
+import CommentArea from "./CommentArea";
+
 function SingleBook(props) {
   const [selected, setSelected] = useState(false);
 
@@ -12,7 +14,7 @@ function SingleBook(props) {
   }
 
   return (
-    <Col sm={12} md={8} lg={4} xl={3} className="mb-5 py-3">
+    <Col sm={10} md={6} lg={4} xxl={4} className="mb-5 py-3">
       <Card
       className={selected ? "border border-3 border-danger" : ""}
       onClick={selectBook}>
@@ -20,8 +22,9 @@ function SingleBook(props) {
         <Card.Body>
           <Card.Title>{props.book.title}</Card.Title>
           <Card.Text>Categoria: {props.book.category}</Card.Text>
-          <Card.Text>Asin: {props.book.asin}</Card.Text>
-          <Card.Text>Prezzo: {props.book.price}</Card.Text>
+          <Card.Text>Asin: <b>{props.book.asin}</b></Card.Text>
+          <Card.Text>Prezzo: <b>{props.book.price}€</b></Card.Text>
+          {selected && <CommentArea id={props.book.asin}/>}
           <Button variant="success">Acquista</Button>
         </Card.Body>
       </Card>

@@ -33,7 +33,7 @@ function BookFilter() {
           onChange={handleInputChange}
         />
       </Row>
-      <Row className="d-flex justify-content-center gap-2 mt-5">
+      <Row className="d-flex justify-content-center mt-5">
         {
         filteredBooks.map((book, i) => (
           <SingleBook book={book} key={i} />
