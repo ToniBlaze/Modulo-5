@@ -25,7 +25,7 @@ function SingleBook(props) {
           <Card.Text>Asin: <b>{props.book.asin}</b></Card.Text>
           <Card.Text>Prezzo: <b>{props.book.price}€</b></Card.Text>
           {selected && <CommentArea id={props.book.asin}/>}
-          <Button variant="success">Acquista</Button>
+          <Button className="mt-3" variant="success">Acquista</Button>
         </Card.Body>
       </Card>
     </Col>

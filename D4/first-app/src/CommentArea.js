@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import CommentList from "./CommentList"
+import AddComment from "./AddComment";
 
 function CommentArea(props) {
   const [data, setData] = useState([]);
@@ -23,18 +24,11 @@ function CommentArea(props) {
   }, [props.id]);
 
   return (
-    <Row>
-      <hr></hr>
-      {data.map((item, index) => (
-        <div key={index}>
-        <p className="mb-0 mt-3">Autore: <b className="text-secondary">{item.author}</b></p>
-        <Row>
-            <Col><b className="text-secondary">"{item.comment}"</b></Col>
-            <Col>Rate: <b className="text-body">{item.rate}</b></Col>
-        </Row>
-        </div>
-      ))}
-    </Row>
+    <>
+    <CommentList data={data} />
+    <AddComment />
+    </>
   );
 }
 export default CommentArea;
+
