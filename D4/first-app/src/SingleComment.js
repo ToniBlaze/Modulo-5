@@ -1,7 +1,7 @@
 import { Row, Col } from "react-bootstrap";
 
 function SingleComment(props) {
-    console.log(props)
+    // console.log(props)
   return (
     <div key={props.index}>
       <p className="mb-0 mt-3">

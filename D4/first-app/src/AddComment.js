@@ -5,9 +5,10 @@ const API = `https://striveschool-api.herokuapp.com/api/comments/`;
 const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODI3NzA1OTMsImV4cCI6MTY4Mzk4MDE5M30.ShMsEPRyUGBQkh0IP0Oysi_i3ezVbUh_MdKrgdRpey8`;
 
 function AddComment(props) {
-  // const [comment, setComment] = useState({ author: "", comment: "", rate: 1 });
   const [comment, setComment] = useState([]);
   const [show, setShow] = useState(false);
+  const [review, setReview] = React.useState("");
+  const [rating, setRating] = React.useState("");
 
   // CHIUSURA MODALE
   function handleClose(e) {
@@ -28,32 +29,37 @@ function AddComment(props) {
     e.preventDefault();
     e.stopPropagation();
 
-    const newComment = {
-      elementId: props.id,
+    let newComment = {
       comment: review,
       rate: rating,
+      elementId: props.id,
     };
 
-    //CHIAMATA API
-    fetch(API, {
-      method: "POST",
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODI3NzA1OTMsImV4cCI6MTY4Mzk4MDE5M30.ShMsEPRyUGBQkh0IP0Oysi_i3ezVbUh_MdKrgdRpey8",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(comment),
-    })
-      .then((reponse) => reponse.json())
-      .then((data) => {
-        setComment({ ...comment, newComment, data });
-      });
-
-    handleClose();
+    // SE IL VALORE E' VALIDO FAI CHIAMATA ALTRIMENTI MOSTRA ALERT E SVUOTA "RATING"
+    if (rating >= 1 && rating <= 5) {
+      //CHIAMATA API
+      fetch(API, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+      })
+        .then((reponse) => reponse.json())
+        .then((data) => {
+          console.log(JSON.stringify(newComment));
+          setComment([...comment, data]);
+          handleClose();
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      alert("Il valore del rating deve essere compreso tra 1 e 5.");
+      setRating("");
+    }
   }
-
-  const [review, setReview] = React.useState("");
-  const [rating, setRating] = React.useState("");
 
   function handleReviewChange(e) {
     setReview(e.target.value);
@@ -69,12 +75,15 @@ function AddComment(props) {
         Aggiungi commento
       </Button>
 
-      <Modal show={show} onClick={(e) => e.stopPropagation()}>
-        <Modal.Header>
+      {/* MODALE */}
+      <Modal show={show} onClick={handleClose}>
+        <Modal.Header onClick={(e) => e.stopPropagation()}>
           <Modal.Title>Inserisci recensione</Modal.Title>
         </Modal.Header>
 
         <Modal.Body onClick={(e) => e.stopPropagation()}>
+
+          {/* FORM */}
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Email address</Form.Label>
@@ -91,17 +100,20 @@ function AddComment(props) {
               <Form.Control
                 type="number"
                 placeholder=""
+                min={1}
+                max={5}
+                value={rating}
                 onChange={handleRatingChange}
                 onClick={(e) => e.stopPropagation()}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleClose}>
+            <Button variant="primary" type="submit" onClick={handleSubmit}>
               Invia recensione
             </Button>
           </Form>
         </Modal.Body>
 
-        <Modal.Footer>
+        <Modal.Footer onClick={(e) => e.stopPropagation()}>
           <Button variant="secondary" onClick={handleClose}>
             Chiudi
           </Button>

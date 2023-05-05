@@ -26,7 +26,7 @@ function CommentArea(props) {
   return (
     <>
     <CommentList data={data} />
-    <AddComment />
+    <AddComment id={props.id}/>
     </>
   );
 }
