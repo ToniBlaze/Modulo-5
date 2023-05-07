@@ -48,7 +48,6 @@ function AddComment(props) {
       })
         .then((reponse) => reponse.json())
         .then((data) => {
-          console.log(JSON.stringify(newComment));
           setComment([...comment, data]);
           handleClose();
         })

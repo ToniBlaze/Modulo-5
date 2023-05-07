@@ -23,6 +23,7 @@ function CommentArea(props) {
     fetchData();
   }, [props.id]);
 
+
   return (
     <>
     <CommentList data={data} />
