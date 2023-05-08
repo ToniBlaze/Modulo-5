@@ -10,9 +10,10 @@ function SearchBar(props) {
 
   // Funzione per gestire il cambiamento dell'input di ricerca
   function handleInputChange(event) {
-    setSearchText(event.target.value);
-    props.onChange(event.target.value)
-    // console.log(event.target.value);
+    const inputValue = event.target.value;
+    setSearchText(inputValue);
+    props.onQueryChange(inputValue);
+    console.log(inputValue);
   }
 
   return (
@@ -27,6 +28,13 @@ function SearchBar(props) {
 }
 
 function MyNav(props) {
+
+  //funzione che passa lo stato al componente superiore
+  function handleQueryChange(value) {
+    props.onQueryChange(value);
+  }
+
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
@@ -45,7 +53,7 @@ function MyNav(props) {
               <NavDropdown.Item href="#action/3.3">Dramatic</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <SearchBar onChange={props.onChange} />
+          <SearchBar onQueryChange={handleQueryChange} />
         </Navbar.Collapse>
       </Container>
     </Navbar>
