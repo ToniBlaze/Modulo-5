@@ -6,20 +6,28 @@ import MyFooter from './MyFooter';
 import Welcome from './Welcome';
 import BookFilter from './BookFilter';
 
-function App() {
-const [query, setQuery] = useState("")
+import Horror from "./categorie/horror.json";
 
-function handleInputChange(event) {
-  setQuery(event.target.value);
-  console.log(event.target.value);
-}
-console.log(query);
+function App() {
+  const [query, setQuery] = useState("")
+
+  function handleInputChange(value) {
+    setQuery(value);
+console.log(value);
+  }
+
+
+  // Creazione del nuovo array di libri filtrati in base al testo di ricerca
+  const filteredBooks = Horror.filter((book) =>
+    book.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <div className="App">
-      <MyNav onChange={handleInputChange} />
+      <MyNav onQueryChange={handleInputChange} />
       <Welcome />
       <hr />
-      <BookFilter query={query}/>
+      <BookFilter books={filteredBooks} />
       <hr />
       <MyFooter />
     </div>
