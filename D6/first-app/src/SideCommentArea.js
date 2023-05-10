@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import CommentList from "./CommentList"
-import AddComment from "./AddComment";
+import CommentList from "./CommentList";
 
-function CommentArea(props) {
+function SideCommentArea(props) {
   const [data, setData] = useState([]);
+  console.log(props);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${props.id}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${props}`,
         {
           headers: {
             Authorization:
@@ -21,16 +21,13 @@ function CommentArea(props) {
     }
 
     fetchData();
-  }, [props.id]);
-
+  }, [props]);
 
   return (
-    <>
-    <CommentList data={data} />
-    <AddComment id={props.id}/>
-    </>
+    <div>
+      <CommentList data={data} />
+    </div>
   );
 }
 
-export default CommentArea;
-
+export default SideCommentArea;
