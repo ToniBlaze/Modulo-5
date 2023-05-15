@@ -11,7 +11,7 @@ import Horror from "./categorie/horror.json";
 function App() {
   const [query, setQuery] = useState("");
 
-  function handleInputChange(value) {
+  function handleInputChange(value) { 
     setQuery(value);
     console.log(value);
   }
