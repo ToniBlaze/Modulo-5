@@ -4,15 +4,16 @@ import CommentList from "./CommentList";
 function SideCommentArea(props) {
   const [data, setData] = useState([]);
   console.log(props);
+  console.log(data);
 
   useEffect(() => {
     async function fetchData() {
       const response = await fetch(
-        `https://striveschool-api.herokuapp.com/api/comments/${props}`,
+        `https://striveschool-api.herokuapp.com/api/comments/${props.selectedBook}`,
         {
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODI3NzA1OTMsImV4cCI6MTY4Mzk4MDE5M30.ShMsEPRyUGBQkh0IP0Oysi_i3ezVbUh_MdKrgdRpey8",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODQxNzEyMDgsImV4cCI6MTY4NTM4MDgwOH0.bZuyoNmPlcnbMRuSYMYp2IGq8rkWap6RA8Lhq-ejszY",
           },
         }
       );
