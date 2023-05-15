@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -6,8 +7,12 @@ import Row from "react-bootstrap/Row";
 import SingleBook from "./SingleBook";
 
 function BookFilter(props) {
+
+  const [selectedBook, setSelectedBook] = useState(null);
+
   function handleBookClick(book) {
     props.onBookSelect(book.asin);
+    setSelectedBook(book.asin)
   }
 
 
@@ -22,6 +27,7 @@ function BookFilter(props) {
           book={book} 
           key={i}
           onClick={() => handleBookClick(book)}
+          selected={selectedBook === book.asin}
           />
         ))
         }
