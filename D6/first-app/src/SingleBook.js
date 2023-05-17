@@ -7,7 +7,6 @@ import Button from "react-bootstrap/Button";
 
 function SingleBook(props) {
   
-
   function selectBook() {
     if (props.selected) {
       props.onClick(null);
