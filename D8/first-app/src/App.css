@@ -38,15 +38,14 @@
 }
 
 .custom-img-height {
-  height: 350px;
+  height: 310px;
 }
 
 /* 
 CSS del componente BookDetails */
 
 .img-custom-book-details {
-  max-height: 430px !important;
+  max-height: 400px !important;
   object-fit: cover !important;
   padding-right: 1.5rem !important;
-  
 }

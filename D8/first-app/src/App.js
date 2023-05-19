@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import MyNav from "./MyNav";
 import MyFooter from "./MyFooter";
 import BookFilter from "./BookFilter";
-import SideCommentArea from "./SideCommentArea";
 
 import Horror from "./categorie/horror.json";
 
@@ -41,15 +40,11 @@ function App() {
             index element={
               <Container fluid>
                 <Row>
-                  <Col xs={8}>
+                  <Col xs={12}>
                     <BookFilter
                       books={filteredBooks}
                       onBookSelect={handleBookSelect}
                     />
-                  </Col>
-
-                  <Col xs={4}>
-                    <SideCommentArea selectedBook={selectedBook} />
                   </Col>
                 </Row>
               </Container>

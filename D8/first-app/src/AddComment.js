@@ -4,7 +4,7 @@ import { Button, Modal, Form } from "react-bootstrap";
 const API = `https://striveschool-api.herokuapp.com/api/comments/`;
 const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODQxNzEyMDgsImV4cCI6MTY4NTM4MDgwOH0.bZuyoNmPlcnbMRuSYMYp2IGq8rkWap6RA8Lhq-ejszY`;
 
-function AddComment(props) {
+function AddComment({id, setCommentsCount}) {
   const [comment, setComment] = useState([]);
   const [show, setShow] = useState(false);
   const [review, setReview] = React.useState("");
@@ -26,39 +26,39 @@ function AddComment(props) {
   }
 
   // GESTISCI INVIO FORM
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
 
     let newComment = {
       comment: review,
       rate: rating,
-      elementId: props.id,
+      elementId: id,
     };
 
     // SE IL VALORE E' VALIDO FAI CHIAMATA ALTRIMENTI MOSTRA ALERT E SVUOTA "RATING"
     if (rating >= 1 && rating <= 5) {
-      //CHIAMATA API
-      fetch(API, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newComment),
-      })
-        .then((reponse) => reponse.json())
-        .then((data) => {
-          setComment([...comment, data]);
-          handleClose();
-        })
-        .catch((error) => {
-          console.error("Error:", error);
+      try {
+        const response = await fetch(API, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newComment),
         });
+        const data = await response.json();
+        setComment([...comment, data]);
+        handleClose();
+      } catch (error) {
+        console.error("Error:", error);
+      }
     } else {
       alert("Il valore del rating deve essere compreso tra 1 e 5.");
       setRating("");
     }
+    
+    setCommentsCount(prevCount => prevCount + 1)
   }
 
   function handleReviewChange(e) {

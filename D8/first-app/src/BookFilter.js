@@ -19,8 +19,8 @@ function BookFilter(props) {
 
 
   return (
-    <Container>
-      <Row className="d-flex justify-content-center">
+    <Container fluid>
+      <Row className="d-flex justify-content-center py-4 px-3">
         {
         props.books.map((book, i) => (
           <SingleBook 

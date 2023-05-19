@@ -4,8 +4,8 @@ import { useState } from "react";
 const API = `https://striveschool-api.herokuapp.com/api/comments/`;
 const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODQxNzEyMDgsImV4cCI6MTY4NTM4MDgwOH0.bZuyoNmPlcnbMRuSYMYp2IGq8rkWap6RA8Lhq-ejszY`;
 
-function SingleComment(props) {
-  const [comments, setComments] = useState([props.item]);
+function SingleComment({item, index, setCommentsCount}) {
+  const [comments, setComments] = useState([item]);
 
   async function deleteComment(e, commentId) {
     e.preventDefault();
@@ -27,22 +27,23 @@ function SingleComment(props) {
     } catch (error) {
       console.error("Error:", error);
     }
+    setCommentsCount(prevCount => prevCount + 1)
   }
 
   return (
-    <div key={props.index}>
+    <div key={index}>
       <p className="mb-0 mt-3">
-        Autore: <b className="text-secondary">{props.item.author}</b>
+        Autore: <b className="text-secondary">{item.author}</b>
       </p>
       <Row>
         <Col>
-          <b className="text-secondary">"{props.item.comment}"</b>
+          <b className="text-secondary">"{item.comment}"</b>
         </Col>
         <Col>
-          Rate: <b className="text-body">{props.item.rate}</b>
+          Rate: <b className="text-body">{item.rate}</b>
         </Col>
         <Button
-          onClick={(e) => deleteComment(e, props.item._id)}
+          onClick={(e) => deleteComment(e, item._id)}
           className="btn btn-danger">
           Elimina
         </Button>
