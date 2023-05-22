@@ -9,6 +9,11 @@ import AddCommentArea from "../AddCommentArea";
 
 //JSON
 import Horror from "../categorie/horror.json";
+import Scifi from "../categorie/scifi.json";
+import History from "../categorie/history.json";
+import Romance from "../categorie/romance.json";
+import Fantasy from "../categorie/fantasy.json";
+import AllBooks from "../categorie/allbooks.json";
 
 
 
@@ -24,9 +29,24 @@ export default function BookDetails() {
 
   //Prendi "ID" da paramentro della ROUTE
   let { id } = useParams();
+  let { category } = useParams();
 
   // Trova il libro corrispondente all'ASIN
-  const book = Horror.find((elem) => elem.asin === id);
+  let book;
+
+  if (category === "horror") {
+    book = Horror.find((elem) => elem.asin === id);
+ } else if (category === "scifi") {
+    book = Scifi.find((elem) => elem.asin === id);
+ } else if (category === "history") {
+    book = History.find((elem) => elem.asin === id);
+ } else if (category === "romance") {
+    book = Romance.find((elem) => elem.asin === id);
+ } else if (category === "fantasy") {
+    book = Fantasy.find((elem) => elem.asin === id);
+ } else {
+    book = AllBooks.find((elem) => elem.asin === id);
+ }
 
   return (
     <Container fluid>

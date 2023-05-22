@@ -58,6 +58,7 @@ function AddComment({id, setCommentsCount}) {
       setRating("");
     }
     
+    setRating("");
     setCommentsCount(prevCount => prevCount + 1)
   }
 

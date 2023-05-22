@@ -2,44 +2,25 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .custom-img-height {
-  height: 310px;
+  height: 330px;
 }
+
+/* Jumbotron */ 
+.bg-image {
+  background-image: url(./assets/background.jpeg) !important;
+  max-height: 50vh;
+  background-position: center !important;
+  background-size: cover !important;
+}
+
+/* Input Navbar */
+
+input {
+  max-width: 220px;
+  max-height: 35px;
+}
+
 
 /* 
 CSS del componente BookDetails */
@@ -49,3 +30,16 @@ CSS del componente BookDetails */
   object-fit: cover !important;
   padding-right: 1.5rem !important;
 }
+
+/* effetti SingleBook */
+
+.single-book {
+  box-shadow: 3px 3px 10px rgba(27, 27, 27, 0.3);
+  transition: transform 0.3s ease-in !important;
+}
+
+.single-book:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5) !important;
+}
+

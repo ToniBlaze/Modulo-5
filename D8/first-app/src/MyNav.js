@@ -1,11 +1,12 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import Form from "react-bootstrap/Form";
 
 import { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
+//SEARCH BAR
 function SearchBar(props) {
   const [searchText, setSearchText] = useState("");
 
@@ -20,7 +21,7 @@ function SearchBar(props) {
   return (
     <input
       type="text"
-      className="text-center"
+      className="text-center form-control "
       placeholder="*** Cerca i libri ***"
       value={searchText}
       onChange={handleInputChange}
@@ -29,12 +30,15 @@ function SearchBar(props) {
 }
 
 function MyNav(props) {
+  function handleCategoryChange(event) {
+    const selectedCategory = event.target.value;
+    props.onCategoryChange(selectedCategory);
+  }
 
   //funzione che passa lo stato al componente superiore
   function handleQueryChange(value) {
     props.onQueryChange(value);
   }
-
 
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
@@ -45,9 +49,28 @@ function MyNav(props) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link className="nav-link" to="/">Home</Link>
-            <Link className="nav-link" to="/about">About</Link>
-            <Link className="nav-link" to="/browse">Browse</Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+            <Link className="nav-link" to="/about">
+              About
+            </Link>
+            <Link className="nav-link" to="/browse">
+              Browse
+            </Link>
+
+            <span className="ms-4 nav-link">Categorie:</span>
+            <Form.Select
+              size="sm"
+              className="border-secondary py-0 mx-2 bg-dark text-light"
+              onChange={handleCategoryChange}>
+              <option value="tutte">Tutte</option>
+              <option value="horror">Horror</option>
+              <option value="scifi">Sci-Fi</option>
+              <option value="history">History</option>
+              <option value="romance">Romance</option>
+              <option value="fantasy">Fantasy</option>
+            </Form.Select>
           </Nav>
           <SearchBar onQueryChange={handleQueryChange} />
         </Navbar.Collapse>

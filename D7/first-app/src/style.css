@@ -3,7 +3,7 @@
 }
 
 .bg-image {
-    background-image: url(https://images.unsplash.com/photo-1443827357341-5def682bb98b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1172&q=80);
-    height: 60vh;
+    background-image: url(D8\first-app\src\assets\background.jpeg);
+    height: 40vh;
     background-position: center;
 }
