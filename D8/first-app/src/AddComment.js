@@ -4,12 +4,11 @@ import { Button, Modal, Form } from "react-bootstrap";
 const API = `https://striveschool-api.herokuapp.com/api/comments/`;
 const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM2ZjFkMjMzYjE1MjAwMTQ3NjE3OTYiLCJpYXQiOjE2ODQxNzEyMDgsImV4cCI6MTY4NTM4MDgwOH0.bZuyoNmPlcnbMRuSYMYp2IGq8rkWap6RA8Lhq-ejszY`;
 
-function AddComment({id, setCommentsCount}) {
+function AddComment({ id, setCommentsCount }) {
   const [comment, setComment] = useState([]);
   const [show, setShow] = useState(false);
   const [review, setReview] = React.useState("");
   const [rating, setRating] = React.useState("");
-
 
   // CHIUSURA MODALE
   function handleClose(e) {
@@ -57,9 +56,9 @@ function AddComment({id, setCommentsCount}) {
       alert("Il valore del rating deve essere compreso tra 1 e 5.");
       setRating("");
     }
-    
+
     setRating("");
-    setCommentsCount(prevCount => prevCount + 1)
+    setCommentsCount((prevCount) => prevCount + 1);
   }
 
   function handleReviewChange(e) {
@@ -82,13 +81,18 @@ function AddComment({id, setCommentsCount}) {
           <Modal.Title>Inserisci recensione</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body onClick={(e) => e.stopPropagation()}>
+        <Modal.Body
+          className="d-flex modal-class"
+          onClick={(e) => e.stopPropagation()}>
+
 
           {/* FORM */}
-          <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3">
-              <Form.Label>Email address</Form.Label>
+          <Form className="text-center" onSubmit={handleSubmit}>
+
+            <Form.Group className="mb-3 text-center">
+              <Form.Label>Che ne pensi di questo libro?</Form.Label>
               <Form.Control
+              className="input-text"
                 type="textarea"
                 placeholder="Scrivi recensione"
                 onChange={handleReviewChange}
@@ -96,9 +100,10 @@ function AddComment({id, setCommentsCount}) {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3 input-number">
               <Form.Label>Valutazione (da 1 a 5)</Form.Label>
               <Form.Control
+              className="input-small"
                 type="number"
                 placeholder=""
                 min={1}
@@ -108,7 +113,7 @@ function AddComment({id, setCommentsCount}) {
                 onClick={(e) => e.stopPropagation()}
               />
             </Form.Group>
-            <Button variant="primary" type="submit" onClick={handleSubmit}>
+            <Button className="mt-2" variant="primary" type="submit" onClick={handleSubmit}>
               Invia recensione
             </Button>
           </Form>
