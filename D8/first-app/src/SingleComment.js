@@ -32,21 +32,27 @@ function SingleComment({ item, index, setCommentsCount }) {
 
   return (
     <div className="my-4 p-1" key={index}>
-      <Row>
-        <p className="mb-0">
-          Autore: <b className="text-secondary">{item.author}</b>
-        </p>
-        <Col>
-          Commento: <b className="text-secondary">"{item.comment}"</b>
+      <Row className="border-custom py-3">
+        <Col xs={9}>
+          <p className="mb-2 ">
+            Autore: <b className="text-secondary">{item.author}</b>
+          </p>
+          <Col className="d-flex">
+            <Col>
+              Commento: <b className="text-secondary">"{item.comment}"</b>
+            </Col>
+            <Col>
+              Valutazione: <b className="text-body">{item.rate}</b>
+            </Col>
+          </Col>
         </Col>
-        <Col>
-          Valutazione: <b className="text-body">{item.rate}</b>
+        <Col className="d-flex align-items-center" xs={3}>
+          <Button
+            onClick={(e) => deleteComment(e, item._id)}
+            className="btn btn-danger">
+            Elimina
+          </Button>
         </Col>
-        <Button
-          onClick={(e) => deleteComment(e, item._id)}
-          className="btn btn-danger">
-          Elimina
-        </Button>
       </Row>
     </div>
   );

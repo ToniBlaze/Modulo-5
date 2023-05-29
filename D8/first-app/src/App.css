@@ -45,7 +45,7 @@ CSS del componente BookDetails */
 
 .show-details-btn {
   padding: 10px 20px;
-  border: 1px solid transparent;
+  border: 1px solid transparent !important;
   display: flex;
   align-items: center;
   font-size: 15px;
@@ -99,4 +99,10 @@ CSS del componente BookDetails */
 }
 .input-small {
   width: 60px !important;
+}
+
+
+.border-custom {
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
 }
